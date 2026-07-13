@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Phone, Mail, Menu, X } from "lucide-react"
+import { Phone, Mail, Menu, X, Zap } from "lucide-react"
 import { Logo } from "./logo"
 import { LinkedInIcon } from "./linkedin-icon"
 
@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { label: "Savoir-faire", href: "#services" },
   { label: "Nos engagements", href: "#engagements" },
   { label: "Nos partenaires", href: "#partenaires" },
-  { label: "Actualités", href: "#actualites" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -27,7 +26,6 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Top bar */}
       <motion.div
         className="bg-brand-dark text-primary-foreground"
         initial={{ y: -40, opacity: 0 }}
@@ -40,28 +38,27 @@ export function SiteHeader() {
             aria-label="LinkedIn 3TE"
             className="text-primary-foreground/80 transition-colors hover:text-primary-foreground"
           >
-            <LinkedInIcon className="size-5" />
+            <LinkedInIcon className="size-4" />
           </a>
           <div className="flex items-center gap-6">
             <a href="tel:+221338652222" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-              <Phone className="size-4" />
+              <Phone className="size-3.5" />
               <span className="hidden sm:inline">+221 33 000 00 00</span>
             </a>
             <a
               href="mailto:contact@3te-energies.com"
               className="flex items-center gap-2 transition-opacity hover:opacity-80"
             >
-              <Mail className="size-4" />
+              <Mail className="size-3.5" />
               <span className="hidden sm:inline">contact@3te-energies.com</span>
             </a>
           </div>
         </div>
       </motion.div>
 
-      {/* Main nav */}
       <motion.div
         className={`border-b border-border transition-all duration-300 ${
-          scrolled ? "bg-background/95 shadow-md backdrop-blur-md" : "bg-background"
+          scrolled ? "bg-background/95 shadow-lg shadow-primary/5 backdrop-blur-xl" : "bg-background"
         }`}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -77,25 +74,27 @@ export function SiteHeader() {
               <motion.a
                 key={link.label}
                 href={link.href}
-                className="group flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+                className="group relative rounded-md px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.05, duration: 0.4 }}
               >
                 {link.label}
+                <span className="absolute bottom-0 left-3 right-3 h-0.5 scale-x-0 bg-primary transition-transform group-hover:scale-x-100" />
               </motion.a>
             ))}
           </nav>
 
           <motion.a
             href="#contact"
-            className="hidden rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 lg:inline-block"
+            className="hidden items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 glow-border lg:inline-flex"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
+            <Zap className="size-3.5" fill="currentColor" />
             Demander un devis
           </motion.a>
 
@@ -120,7 +119,6 @@ export function SiteHeader() {
           </button>
         </div>
 
-        {/* Mobile menu */}
         <AnimatePresence>
           {open && (
             <motion.nav
@@ -148,11 +146,12 @@ export function SiteHeader() {
                 <motion.a
                   href="#contact"
                   onClick={() => setOpen(false)}
-                  className="mt-3 mb-2 rounded-md bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
+                  className="mt-3 mb-2 flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
                 >
+                  <Zap className="size-3.5" fill="currentColor" />
                   Demander un devis
                 </motion.a>
               </div>

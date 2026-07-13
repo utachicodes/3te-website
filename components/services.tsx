@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "motion/react"
-import { Factory, Building2, Lightbulb, Check } from "lucide-react"
+import { Factory, Building2, Lightbulb, Check, Zap } from "lucide-react"
 import { fadeUp, fadeLeft, fadeRight, staggerContainer, smoothTransition } from "@/lib/animations"
 
 const SERVICES = [
@@ -60,8 +60,10 @@ export function Services() {
   const isInView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <section id="services" className="bg-secondary" ref={ref}>
-      <div className="mx-auto max-w-7xl px-4 py-20">
+    <section id="services" className="relative bg-secondary overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 energy-grid opacity-20" aria-hidden="true" />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20">
         <motion.div
           className="max-w-2xl"
           variants={fadeUp}
@@ -69,7 +71,10 @@ export function Services() {
           animate={isInView ? "visible" : "hidden"}
           transition={smoothTransition}
         >
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary">Nos savoir-faire</span>
+          <div className="inline-flex items-center gap-2 text-primary">
+            <Zap className="size-4" fill="currentColor" />
+            <span className="text-sm font-semibold uppercase tracking-widest">Nos savoir-faire</span>
+          </div>
           <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-foreground md:text-5xl text-balance">
             Ce que nous faisons
           </h2>
@@ -96,15 +101,23 @@ export function Services() {
                     role="tab"
                     aria-selected={selected}
                     onClick={() => setActive(i)}
-                    className={`inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors ${
+                    className={`relative inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-all ${
                       selected
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-background text-foreground hover:bg-accent"
+                        ? "bg-primary text-primary-foreground glow-border"
+                        : "bg-white text-foreground border border-border/60 hover:border-primary/30 hover:bg-primary/5"
                     }`}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     layout
                   >
+                    {selected && (
+                      <motion.span
+                        className="absolute -top-1 -right-1 size-2 rounded-full bg-energy-glow"
+                        layoutId="service-indicator"
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
                     <Icon className="size-4" />
                     {s.label}
                   </motion.button>
@@ -129,7 +142,7 @@ export function Services() {
                   initial="hidden"
                   animate="visible"
                 >
-                  {service.points.map((point) => (
+                  {service.points.map((point, i) => (
                     <motion.li
                       key={point}
                       className="flex items-start gap-2.5 text-sm text-foreground"
@@ -140,7 +153,7 @@ export function Services() {
                         className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15, delay: i * 0.08 }}
                       >
                         <Check className="size-3.5" />
                       </motion.span>
@@ -153,7 +166,7 @@ export function Services() {
           </motion.div>
 
           <motion.div
-            className="overflow-hidden rounded-lg border border-border shadow-sm"
+            className="relative overflow-hidden rounded-lg border border-border/50 shadow-sm"
             variants={fadeRight}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -171,6 +184,7 @@ export function Services() {
                 transition={{ duration: 0.4 }}
               />
             </AnimatePresence>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0" />
           </motion.div>
         </div>
       </div>

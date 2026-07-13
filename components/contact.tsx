@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "motion/react"
-import { Phone, Mail, MapPin, ArrowRight, CheckCircle2 } from "lucide-react"
+import { Phone, Mail, MapPin, ArrowRight, CheckCircle2, Zap } from "lucide-react"
 import { fadeLeft, fadeRight, staggerContainer, smoothTransition } from "@/lib/animations"
 
 const CONTACT_DETAILS = [
@@ -17,8 +17,10 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <section id="contact" className="bg-secondary" ref={ref}>
-      <div className="mx-auto max-w-7xl px-4 py-20">
+    <section id="contact" className="relative bg-secondary overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 energy-grid opacity-20" aria-hidden="true" />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20">
         <div className="grid gap-12 lg:grid-cols-2">
           <motion.div
             variants={fadeLeft}
@@ -26,7 +28,10 @@ export function Contact() {
             animate={isInView ? "visible" : "hidden"}
             transition={smoothTransition}
           >
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary">Contact</span>
+            <div className="inline-flex items-center gap-2 text-primary">
+              <Zap className="size-4" fill="currentColor" />
+              <span className="text-sm font-semibold uppercase tracking-widest">Contact</span>
+            </div>
             <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-foreground md:text-5xl text-balance">
               Parlons de votre projet
             </h2>
@@ -44,9 +49,9 @@ export function Contact() {
               {CONTACT_DETAILS.map((item) => {
                 const Icon = item.icon
                 const content = (
-                  <div className="flex items-start gap-4">
+                  <div className="group flex items-start gap-4">
                     <motion.span
-                      className="flex size-11 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary"
+                      className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
                       whileHover={{ scale: 1.1, rotate: -5 }}
                       transition={{ type: "spring", stiffness: 300, damping: 15 }}
                     >
@@ -82,12 +87,14 @@ export function Contact() {
           </motion.div>
 
           <motion.div
-            className="rounded-lg border border-border bg-card p-6 shadow-sm md:p-8"
+            className="relative rounded-lg border border-border/50 bg-white p-6 shadow-sm md:p-8"
             variants={fadeRight}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             transition={{ ...smoothTransition, delay: 0.2 }}
           >
+            <div className="absolute top-0 left-0 right-0 h-1 rounded-t-lg bg-gradient-to-r from-primary/0 via-primary to-primary/0" />
+
             <AnimatePresence mode="wait">
               {sent ? (
                 <motion.div
@@ -98,13 +105,15 @@ export function Contact() {
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
                 >
                   <motion.div
+                    className="relative"
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.1 }}
                   >
-                    <CheckCircle2 className="size-12 text-primary" />
+                    <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl" />
+                    <CheckCircle2 className="relative size-14 text-primary" />
                   </motion.div>
-                  <h3 className="mt-4 font-heading text-xl font-bold text-foreground">Message envoyé</h3>
+                  <h3 className="mt-5 font-heading text-xl font-bold text-foreground">Message envoyé</h3>
                   <p className="mt-2 text-muted-foreground">
                     Merci pour votre message. Notre équipe vous recontactera très prochainement.
                   </p>
@@ -141,19 +150,19 @@ export function Contact() {
                       required
                       rows={4}
                       placeholder="Décrivez votre projet..."
-                      className="w-full resize-none rounded-md border border-input bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/30"
+                      className="w-full resize-none rounded-md border border-input bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:shadow-[0_0_15px_oklch(0.48_0.15_152/0.1)]"
                     />
                   </motion.div>
                   <motion.button
                     type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                    className="group inline-flex w-full items-center justify-center gap-2.5 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 glow-border"
                     variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
                     transition={smoothTransition}
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Envoyer le message
-                    <ArrowRight className="size-4" />
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
                   </motion.button>
                 </motion.form>
               )}
@@ -191,7 +200,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/30"
+        className="w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:shadow-[0_0_15px_oklch(0.48_0.15_152/0.1)]"
       />
     </motion.div>
   )
