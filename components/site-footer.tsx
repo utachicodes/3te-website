@@ -31,7 +31,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-3 md:col-start-7">
-            <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-white/30">
+            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-white/30">
               Navigation
             </h3>
             <ul className="mt-5 space-y-3">
@@ -49,7 +49,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-3 md:col-start-10">
-            <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-white/30">
+            <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-white/30">
               Contact
             </h3>
             <ul className="mt-5 space-y-3 text-sm text-white/40">

@@ -27,7 +27,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="text-xs font-medium uppercase tracking-[0.2em] text-white/40"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-white/40"
             >
               Contact
             </motion.span>
@@ -52,7 +52,7 @@ export function Contact() {
                   <div className="flex items-start gap-4">
                     <Icon className="mt-0.5 size-4 text-white/30" />
                     <div>
-                      <div className="text-xs font-medium uppercase tracking-wider text-white/30">
+                      <div className="font-mono text-xs uppercase tracking-wider text-white/30">
                         {item.label}
                       </div>
                       <div className="mt-1 text-sm text-white/70">{item.value}</div>
@@ -106,7 +106,7 @@ export function Contact() {
                     <Field label="Téléphone" id="phone" type="tel" placeholder="+221 ..." required={false} />
                   </div>
                   <div>
-                    <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-wider text-white/30">
+                    <label htmlFor="message" className="mb-2 block font-mono text-xs uppercase tracking-wider text-white/30">
                       Message
                     </label>
                     <textarea
@@ -119,7 +119,7 @@ export function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="mt-2 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+                    className="mt-2 inline-flex items-center gap-2 rounded-md bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/85"
                   >
                     Envoyer
                     <span>&rarr;</span>
@@ -150,7 +150,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-xs font-medium uppercase tracking-wider text-white/30">
+      <label htmlFor={id} className="mb-2 block font-mono text-xs uppercase tracking-wider text-white/30">
         {label}
       </label>
       <input
@@ -158,7 +158,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/20 focus:border-primary"
+        className="w-full rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/20 focus:border-primary"
       />
     </div>
   )

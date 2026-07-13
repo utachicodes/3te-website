@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Montserrat, Open_Sans, Oswald } from 'next/font/google'
+import { JetBrains_Mono, Montserrat, Open_Sans, Oswald } from 'next/font/google'
 import './globals.css'
 
 const montserrat = Montserrat({
@@ -21,6 +21,12 @@ const openSans = Open_Sans({
   display: 'swap',
 })
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: '3TE | Votre partenaire en infrastructures énergétiques et électriques',
   description:
@@ -30,7 +36,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#1a3a2a',
+  themeColor: '#14161a',
 }
 
 export default function RootLayout({
@@ -39,7 +45,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" className={`${montserrat.variable} ${openSans.variable} ${oswald.variable} bg-background`}>
+    <html
+      lang="fr"
+      className={`${montserrat.variable} ${openSans.variable} ${oswald.variable} ${jetbrainsMono.variable} bg-background`}
+    >
       <body className="antialiased font-sans">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

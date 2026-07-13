@@ -65,7 +65,7 @@ export function Services() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+            className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
           >
             Savoir-faire
           </motion.span>
@@ -79,11 +79,12 @@ export function Services() {
           </motion.h2>
         </div>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-12">
+        <div className="mt-10 grid gap-x-10 lg:grid-cols-12">
           <div className="min-w-0 lg:col-span-4">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1">
               {SERVICES.map((service, i) => {
                 const Icon = service.icon
+                const isActive = i === active
                 return (
                   <motion.button
                     key={service.id}
@@ -92,25 +93,23 @@ export function Services() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className={`group flex w-full items-center gap-3 rounded-2xl px-5 py-4 text-left transition-colors ${
-                      i === active ? "bg-primary text-primary-foreground" : "bg-white text-foreground hover:bg-accent"
+                    className={`group flex w-full items-center gap-4 border-t border-border py-5 text-left transition-colors first:border-t-0 sm:border-t-0 sm:border-b sm:py-6 lg:border-t lg:border-b-0 lg:first:border-t-0 lg:py-5 ${
+                      isActive ? "text-primary" : "text-foreground hover:text-muted-foreground"
                     }`}
                   >
-                    <span
-                      className={`flex size-9 shrink-0 items-center justify-center rounded-full ${
-                        i === active ? "bg-brand-dark text-primary" : "bg-secondary text-primary"
-                      }`}
-                    >
-                      <Icon className="size-4" />
-                    </span>
-                    <span className="font-heading text-base font-bold">{service.label}</span>
+                    <span className="font-mono text-xs text-muted-foreground/50">{service.number}</span>
+                    <Icon className={`size-4 ${isActive ? "text-primary" : "text-muted-foreground/60"}`} />
+                    <span className="font-heading text-base font-bold sm:text-lg">{service.label}</span>
+                    {isActive && (
+                      <motion.div layoutId="active-indicator" className="ml-auto hidden h-px flex-1 bg-primary/30 lg:block" />
+                    )}
                   </motion.button>
                 )
               })}
             </div>
           </div>
 
-          <div className="lg:col-span-8">
+          <div className="mt-10 lg:col-span-8 lg:mt-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={SERVICES[active].id}
@@ -118,9 +117,8 @@ export function Services() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
-                className="overflow-hidden rounded-3xl bg-white"
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden rounded-md">
                   <motion.img
                     src={SERVICES[active].image}
                     alt={SERVICES[active].label}
@@ -129,10 +127,13 @@ export function Services() {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.6 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <span className="font-mono text-5xl font-bold text-white/15">{SERVICES[active].number}</span>
+                  </div>
                 </div>
 
-                <div className="grid gap-6 p-6 sm:grid-cols-2 md:p-8">
+                <div className="mt-8 grid gap-8 sm:grid-cols-2">
                   <div>
                     <h3 className="font-heading text-xl font-bold">{SERVICES[active].label}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -142,9 +143,7 @@ export function Services() {
                   <div className="space-y-3">
                     {SERVICES[active].points.map((point) => (
                       <div key={point} className="flex items-center gap-3 text-sm text-foreground">
-                        <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-secondary text-primary">
-                          <Check className="size-3" />
-                        </span>
+                        <Check className="size-3.5 text-primary" />
                         {point}
                       </div>
                     ))}

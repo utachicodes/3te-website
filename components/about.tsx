@@ -111,7 +111,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
             >
               Qui sommes-nous
             </motion.span>
@@ -143,7 +143,7 @@ export function About() {
             >
               <a
                 href="#savoir-faire"
-                className="group inline-flex items-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
+                className="group inline-flex items-center gap-2 rounded-md bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
               >
                 Nos domaines
                 <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
@@ -215,7 +215,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="order-1 md:order-2"
           >
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Notre parcours
             </span>
             <h3 className="mt-3 font-display text-2xl font-bold leading-tight tracking-tight md:text-3xl">
@@ -223,21 +223,21 @@ export function About() {
             </h3>
             <div className="mt-6 space-y-5 border-l border-border pl-6">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-primary">2001</div>
+                <div className="font-mono text-xs uppercase tracking-wider text-primary">2001</div>
                 <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                   Création de 3TE à Dakar, d&apos;abord centrée sur la maintenance
                   électrique industrielle pour quelques clients locaux.
                 </p>
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-primary">2010 — 2018</div>
+                <div className="font-mono text-xs uppercase tracking-wider text-primary">2010 — 2018</div>
                 <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                   Développement des activités réseaux et éclairage public,
                   puis du pôle tertiaire, et montée en compétences des équipes.
                 </p>
               </div>
               <div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-primary">Aujourd&apos;hui</div>
+                <div className="font-mono text-xs uppercase tracking-wider text-primary">Aujourd&apos;hui</div>
                 <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                   180+ collaborateurs et plus de 500 projets livrés pour des
                   industriels, collectivités et bailleurs au Sénégal.
@@ -267,7 +267,7 @@ export function About() {
         >
           <div className="grid gap-10 p-6 md:grid-cols-2 md:p-12">
             <div>
-              <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-white/40">
+              <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-white/40">
                 <MapPin className="size-3.5" />
                 Zones d&apos;intervention
               </span>
@@ -282,7 +282,7 @@ export function About() {
             </div>
 
             <div>
-              <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
                 Répartition de l&apos;activité
               </span>
               <h3 className="mt-3 font-display text-xl font-bold md:text-2xl">
@@ -307,7 +307,7 @@ export function About() {
             </div>
             <a
               href="#contact"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/85"
             >
               Rejoindre l&apos;équipe
               <ArrowUpRight className="size-4" />
@@ -337,7 +337,7 @@ export function About() {
               { icon: BadgeCheck, label: "NF C 15-100" },
               { icon: Award, label: "ISO 9001" },
             ].map((b) => (
-              <span key={b.label} className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+              <span key={b.label} className="flex items-center gap-1.5 rounded-md bg-white/10 px-3 py-1.5 font-mono text-xs text-white backdrop-blur-md">
                 <b.icon className="size-3.5 text-primary" />
                 {b.label}
               </span>
@@ -448,7 +448,7 @@ export function About() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className={`rounded-full px-3 py-1 text-[11px] font-medium ${
+                      className={`rounded-md px-3 py-1 font-mono text-[10px] ${
                         isActive ? "bg-white/10 text-white/80" : "bg-white text-muted-foreground"
                       }`}
                     >

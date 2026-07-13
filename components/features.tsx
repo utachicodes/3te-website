@@ -43,13 +43,42 @@ const IMAGES = [
   { src: "/images/service-industrie.png", alt: "Installation industrielle" },
 ]
 
+const PARTNERS = ["ENERGIA", "VOLTAX", "GRID+", "SOLARIS", "NOVATEC", "URBALUX"]
+
 export function Features() {
   const [active, setActive] = useState(0)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const partnersRef = useRef(null)
+  const partnersInView = useInView(partnersRef, { once: true, margin: "-50px" })
 
   return (
     <section id="engagements" className="relative bg-background">
+      <div ref={partnersRef} className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-4 py-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={partnersInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between"
+          >
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Ils nous font confiance
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+              {PARTNERS.map((name) => (
+                <span
+                  key={name}
+                  className="font-heading text-base font-bold tracking-tight text-muted-foreground/40 transition-colors hover:text-muted-foreground/70"
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-6xl px-4 py-20 md:py-28">
         <div ref={ref} className="max-w-2xl">
           <motion.span
