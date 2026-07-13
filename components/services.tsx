@@ -80,8 +80,8 @@ export function Services() {
         </div>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <div className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+          <div className="min-w-0 lg:col-span-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1">
               {SERVICES.map((service, i) => {
                 const Icon = service.icon
                 return (
@@ -92,7 +92,7 @@ export function Services() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className={`group flex w-full shrink-0 items-center gap-3 rounded-2xl px-5 py-4 text-left transition-colors ${
+                    className={`group flex w-full items-center gap-3 rounded-2xl px-5 py-4 text-left transition-colors ${
                       i === active ? "bg-primary text-primary-foreground" : "bg-white text-foreground hover:bg-accent"
                     }`}
                   >
