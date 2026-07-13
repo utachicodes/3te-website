@@ -1,78 +1,95 @@
 "use client"
 
-import { motion, useInView } from "motion/react"
 import { useRef } from "react"
-import { Lightbulb, Users, Award, Zap } from "lucide-react"
-import { fadeUp, staggerContainer, smoothTransition } from "@/lib/animations"
+import { motion, useInView } from "motion/react"
+import { Lightbulb, Users, Award } from "lucide-react"
 
 const FEATURES = [
   {
     icon: Lightbulb,
-    title: "Solutions innovantes",
-    description: "Des solutions sur mesure et des idées innovantes pour chaque projet.",
+    number: "01",
+    title: "Innovation",
+    description: "Des solutions sur mesure pour chaque défi technique.",
   },
   {
     icon: Users,
-    title: "Équipe expérimentée",
-    description: "Des experts qualifiés au service de nos clients, de l'étude à la maintenance.",
+    number: "02",
+    title: "Expertise",
+    description: "Des ingénieurs et techniciens qualifiés sur chaque projet.",
   },
   {
     icon: Award,
-    title: "Années d'expérience",
-    description: "L'expérience fait la différence sur les projets les plus exigeants.",
-    badge: "25+",
+    number: "03",
+    title: "Excellence",
+    description: "25 ans d'expérience au service de vos infrastructures.",
   },
 ]
 
 export function Features() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section className="relative border-b border-border bg-background overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 energy-grid opacity-30" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-4 py-16">
-        <motion.div
-          className="grid gap-8 md:grid-cols-3"
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {FEATURES.map((feature, i) => {
-            const Icon = feature.icon
-            return (
-              <motion.div
-                key={feature.title}
-                className="group relative rounded-lg border border-border/60 bg-white/80 p-6 transition-all hover:border-primary/30 hover:bg-white"
-                variants={fadeUp}
-                transition={smoothTransition}
-                whileHover={{ y: -2 }}
-              >
-                <div className="absolute top-3 right-3">
-                  <span className="inline-block size-1.5 rounded-full bg-primary/40 animate-[led-blink_4s_ease-in-out_infinite]" style={{ animationDelay: `${i * 1.2}s` }} />
-                </div>
+    <section ref={ref} className="relative bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-24 md:py-32">
+        <div className="grid items-start gap-16 lg:grid-cols-12">
+          <div className="lg:col-span-4 lg:sticky lg:top-32">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+            >
+              Pourquoi nous
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mt-4 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-5xl"
+            >
+              Notre
+              <br />
+              différence
+            </motion.h2>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-6 h-px bg-primary"
+            />
+          </div>
 
-                <motion.div
-                  className="flex size-14 shrink-0 -skew-x-6 items-center justify-center rounded-lg bg-primary text-primary-foreground"
-                  whileHover={{ scale: 1.08, rotate: -3 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <span className="skew-x-6">
-                    {feature.badge ? (
-                      <span className="font-heading text-lg font-extrabold">{feature.badge}</span>
-                    ) : (
-                      <Icon className="size-6" />
-                    )}
-                  </span>
-                </motion.div>
-                <h3 className="mt-4 font-heading text-lg font-bold text-foreground">{feature.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
-
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0 opacity-0 transition-opacity group-hover:opacity-100" />
-              </motion.div>
-            )
-          })}
-        </motion.div>
+          <div className="lg:col-span-7 lg:col-start-6">
+            <div className="space-y-0">
+              {FEATURES.map((feature, i) => {
+                const Icon = feature.icon
+                return (
+                  <motion.div
+                    key={feature.title}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
+                    className="group flex items-start gap-8 border-t border-border py-10 first:border-t-0"
+                  >
+                    <span className="font-display text-sm font-medium text-muted-foreground/40">
+                      {feature.number}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3">
+                        <Icon className="size-5 text-primary" />
+                        <h3 className="font-heading text-xl font-bold">{feature.title}</h3>
+                      </div>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

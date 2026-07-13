@@ -2,30 +2,29 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "motion/react"
-import { ShieldCheck, Leaf, BadgeCheck, Zap } from "lucide-react"
-import { fadeUp, staggerContainer, smoothTransition } from "@/lib/animations"
+import { ShieldCheck, Leaf, BadgeCheck } from "lucide-react"
 
 const ENGAGEMENTS = [
   {
     icon: ShieldCheck,
+    number: "01",
     title: "Sécurité",
     description:
-      "La sécurité de nos équipes et de nos clients guide chacune de nos interventions, sur tous nos chantiers.",
-    color: "from-red-500/10 to-red-500/0",
+      "La sécurité guide chacune de nos interventions. Sur chaque chantier, sans exception.",
   },
   {
     icon: Leaf,
+    number: "02",
     title: "Environnement",
     description:
-      "Nous privilégions des solutions sobres en énergie et respectueuses de l'environnement pour un impact durable.",
-    color: "from-emerald-500/10 to-emerald-500/0",
+      "Des solutions sobres en énergie, respectueuses de l'environnement pour un impact durable.",
   },
   {
     icon: BadgeCheck,
+    number: "03",
     title: "Qualité",
     description:
-      "Un engagement qualité de la conception à la maintenance, pour des installations fiables et pérennes.",
-    color: "from-primary/10 to-primary/0",
+      "De la conception à la maintenance, des installations fiables et pérennes.",
   },
 ]
 
@@ -33,95 +32,100 @@ const PARTNERS = ["ENERGIA", "VOLTAX", "GRID+", "SOLARIS", "NOVATEC", "URBALUX"]
 
 export function Engagements() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
   const partnersRef = useRef(null)
   const partnersInView = useInView(partnersRef, { once: true, margin: "-50px" })
 
   return (
-    <section id="engagements" className="relative bg-background overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 circuit-dots opacity-30" aria-hidden="true" />
-
-      <div className="relative mx-auto max-w-7xl px-4 py-20">
-        <motion.div
-          className="mx-auto max-w-2xl text-center"
-          variants={fadeUp}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          transition={smoothTransition}
-        >
-          <div className="inline-flex items-center gap-2 text-primary">
-            <Zap className="size-4" fill="currentColor" />
-            <span className="text-sm font-semibold uppercase tracking-widest">Nos valeurs</span>
+    <section id="engagements" ref={ref} className="relative bg-secondary">
+      <div className="mx-auto max-w-7xl px-4 py-24 md:py-32">
+        <div className="grid gap-16 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+            >
+              Nos valeurs
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mt-4 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-5xl"
+            >
+              On fait
+              <br />
+              les choses
+              <br />
+              <span className="text-primary">bien</span>
+            </motion.h2>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-6 h-px bg-primary"
+            />
           </div>
-          <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-foreground md:text-5xl text-balance">
-            Nos engagements au quotidien
-          </h2>
-        </motion.div>
 
-        <motion.div
-          className="mt-12 grid gap-6 md:grid-cols-3"
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {ENGAGEMENTS.map((item) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={item.title}
-                className="group relative overflow-hidden rounded-lg border border-border/60 bg-white p-8 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
-                variants={fadeUp}
-                transition={smoothTransition}
-                whileHover={{ y: -4 }}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-b ${item.color} opacity-0 transition-opacity group-hover:opacity-100`} />
-
-                <div className="relative">
-                  <div className="absolute top-0 right-0 size-20 rounded-full bg-primary/5 blur-2xl transition-all group-hover:scale-150 group-hover:bg-primary/10" />
-
+          <div className="lg:col-span-7 lg:col-start-6">
+            <div className="space-y-0">
+              {ENGAGEMENTS.map((item, i) => {
+                const Icon = item.icon
+                return (
                   <motion.div
-                    className="relative flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
-                    whileHover={{ scale: 1.1, rotate: -5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    key={item.title}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
+                    className="group border-t border-border py-10 first:border-t-0"
                   >
-                    <Icon className="size-6" />
+                    <div className="flex items-start gap-8">
+                      <span className="font-display text-sm font-medium text-muted-foreground/40">
+                        {item.number}
+                      </span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                          <Icon className="size-5 text-primary" />
+                          <h3 className="font-heading text-xl font-bold">{item.title}</h3>
+                        </div>
+                        <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
                   </motion.div>
-                  <h3 className="relative mt-5 font-heading text-xl font-bold text-foreground">{item.title}</h3>
-                  <p className="relative mt-2 leading-relaxed text-muted-foreground">{item.description}</p>
-                </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0 opacity-0 transition-opacity group-hover:opacity-100" />
-              </motion.div>
-            )
-          })}
-        </motion.div>
-
-        <div id="partenaires" className="mt-20 border-t border-border pt-12" ref={partnersRef}>
-          <motion.p
-            className="text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground"
-            variants={fadeUp}
-            initial="hidden"
-            animate={partnersInView ? "visible" : "hidden"}
-            transition={smoothTransition}
+      <div id="partenaires" ref={partnersRef} className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-4 py-16">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={partnersInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="block text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
           >
             Ils nous font confiance
-          </motion.p>
+          </motion.span>
           <motion.div
-            className="mt-10 flex flex-wrap items-center justify-center gap-x-14 gap-y-8"
-            variants={staggerContainer}
-            initial="hidden"
-            animate={partnersInView ? "visible" : "hidden"}
+            initial={{ opacity: 0 }}
+            animate={partnersInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-16 gap-y-8"
           >
-            {PARTNERS.map((name, i) => (
-              <motion.span
+            {PARTNERS.map((name) => (
+              <span
                 key={name}
-                className="font-heading text-xl font-extrabold tracking-tight text-muted-foreground/40 transition-colors hover:text-primary"
-                variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
-                transition={{ ...smoothTransition, delay: i * 0.08 }}
-                whileHover={{ scale: 1.08 }}
+                className="font-heading text-lg font-bold tracking-tight text-muted-foreground/30 transition-colors hover:text-muted-foreground/60"
               >
                 {name}
-              </motion.span>
+              </span>
             ))}
           </motion.div>
         </div>

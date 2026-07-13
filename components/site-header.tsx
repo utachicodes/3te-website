@@ -2,15 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Phone, Mail, Menu, X, Zap } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Logo } from "./logo"
-import { LinkedInIcon } from "./linkedin-icon"
 
 const NAV_LINKS = [
-  { label: "Qui sommes-nous ?", href: "#a-propos" },
-  { label: "Savoir-faire", href: "#services" },
-  { label: "Nos engagements", href: "#engagements" },
-  { label: "Nos partenaires", href: "#partenaires" },
+  { label: "À propos", href: "#a-propos" },
+  { label: "Savoir-faire", href: "#savoir-faire" },
+  { label: "Engagements", href: "#engagements" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -19,124 +17,87 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="fixed top-0 z-50 w-full">
       <motion.div
-        className="bg-brand-dark text-primary-foreground"
-        initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-sm">
-          <a
-            href="https://www.linkedin.com"
-            aria-label="LinkedIn 3TE"
-            className="text-primary-foreground/80 transition-colors hover:text-primary-foreground"
-          >
-            <LinkedInIcon className="size-4" />
-          </a>
-          <div className="flex items-center gap-6">
-            <a href="tel:+221338652222" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-              <Phone className="size-3.5" />
-              <span className="hidden sm:inline">+221 33 000 00 00</span>
-            </a>
-            <a
-              href="mailto:contact@3te-energies.com"
-              className="flex items-center gap-2 transition-opacity hover:opacity-80"
-            >
-              <Mail className="size-3.5" />
-              <span className="hidden sm:inline">contact@3te-energies.com</span>
-            </a>
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className={`border-b border-border transition-all duration-300 ${
-          scrolled ? "bg-background/95 shadow-lg shadow-primary/5 backdrop-blur-xl" : "bg-background"
-        }`}
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-          <a href="#" aria-label="Accueil 3TE">
-            <Logo />
-          </a>
+        <div
+          className={`transition-all duration-500 ${
+            scrolled ? "bg-brand-dark/90 backdrop-blur-xl" : "bg-transparent"
+          }`}
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:py-5">
+            <a href="#" aria-label="Accueil 3TE">
+              <Logo variant="light" />
+            </a>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
-            {NAV_LINKS.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                className="group relative rounded-md px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:text-primary"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + i * 0.05, duration: 0.4 }}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-3 right-3 h-0.5 scale-x-0 bg-primary transition-transform group-hover:scale-x-100" />
-              </motion.a>
-            ))}
-          </nav>
+            <nav className="hidden items-center gap-8 lg:flex" aria-label="Navigation">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm font-medium text-white/50 transition-colors hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
 
-          <motion.a
-            href="#contact"
-            className="hidden items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90 glow-border lg:inline-flex"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Zap className="size-3.5" fill="currentColor" />
-            Demander un devis
-          </motion.a>
+            <a
+              href="#contact"
+              className="hidden border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10 lg:inline-block"
+            >
+              Demander un devis
+            </a>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex size-10 items-center justify-center rounded-md text-foreground lg:hidden"
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            aria-expanded={open}
-          >
-            <AnimatePresence mode="wait">
-              {open ? (
-                <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                  <X className="size-6" />
-                </motion.span>
-              ) : (
-                <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                  <Menu className="size-6" />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex size-10 items-center justify-center text-white lg:hidden"
+              aria-label={open ? "Fermer" : "Menu"}
+              aria-expanded={open}
+            >
+              <AnimatePresence mode="wait">
+                {open ? (
+                  <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <X className="size-5" />
+                  </motion.span>
+                ) : (
+                  <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <Menu className="size-5" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
           {open && (
             <motion.nav
-              className="border-t border-border bg-background lg:hidden"
+              className="border-t border-white/10 bg-brand-dark/95 backdrop-blur-xl lg:hidden"
               aria-label="Navigation mobile"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="mx-auto flex max-w-7xl flex-col px-4 py-2 overflow-hidden">
+              <div className="mx-auto flex max-w-7xl flex-col px-4 py-4 overflow-hidden">
                 {NAV_LINKS.map((link, i) => (
                   <motion.a
                     key={link.label}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="border-b border-border/60 py-3 text-sm font-semibold text-foreground last:border-0"
-                    initial={{ opacity: 0, x: -20 }}
+                    className="border-b border-white/5 py-3 text-sm font-medium text-white/60 last:border-0 hover:text-white"
+                    initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05, duration: 0.3 }}
                   >
@@ -146,12 +107,11 @@ export function SiteHeader() {
                 <motion.a
                   href="#contact"
                   onClick={() => setOpen(false)}
-                  className="mt-3 mb-2 flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.3 }}
+                  className="mt-4 border border-white/20 bg-white/5 px-5 py-3 text-center text-sm font-medium text-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
                 >
-                  <Zap className="size-3.5" fill="currentColor" />
                   Demander un devis
                 </motion.a>
               </div>

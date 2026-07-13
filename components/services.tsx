@@ -2,190 +2,166 @@
 
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "motion/react"
-import { Factory, Building2, Lightbulb, Check, Zap } from "lucide-react"
-import { fadeUp, fadeLeft, fadeRight, staggerContainer, smoothTransition } from "@/lib/animations"
+import { Factory, Building2, Lightbulb, Check } from "lucide-react"
 
 const SERVICES = [
   {
     id: "industrie",
+    number: "01",
     label: "Industrie",
     icon: Factory,
     image: "/images/service-industrie.png",
-    imageAlt: "Installation de panneaux solaires par un technicien 3TE",
     description:
-      "Grâce à l'expertise et au savoir-faire de nos équipes, nous apportons des solutions pour l'étude, la conception et la réalisation de projets de supervision, d'automatisme et d'électricité industrielle.",
+      "Électricité industrielle haute et basse tension, automatisme, supervision et maintenance de sites.",
     points: [
-      "Électricité industrielle haute et basse tension",
-      "Automatisme et supervision",
-      "Postes de transformation et distribution",
-      "Maintenance et exploitation des sites",
+      "Haute et basse tension",
+      "Automatisme & supervision",
+      "Postes de transformation",
+      "Maintenance de sites",
     ],
   },
   {
     id: "tertiaire",
+    number: "02",
     label: "Tertiaire",
     icon: Building2,
     image: "/images/service-tertiaire.png",
-    imageAlt: "Bâtiment tertiaire moderne équipé par 3TE",
     description:
-      "Nous équipons les bâtiments tertiaires et collectifs en portant une attention particulière au confort, à la qualité et à la sécurité sur les lieux de vie et de travail.",
+      "Équipement de bâtiments tertiaires avec une attention particulière au confort et à la sécurité.",
     points: [
-      "Courants forts et courants faibles",
-      "Éclairage et gestion technique du bâtiment",
-      "Sécurité incendie et contrôle d'accès",
-      "Rénovation et efficacité énergétique",
+      "Courants forts & faibles",
+      "Éclairage & GTB",
+      "Sécurité incendie",
+      "Rénovation énergétique",
     ],
   },
   {
     id: "reseau",
-    label: "Réseau & éclairage public",
+    number: "03",
+    label: "Réseau & éclairage",
     icon: Lightbulb,
     image: "/images/service-reseau.png",
-    imageAlt: "Techniciens 3TE installant un réseau et un éclairage public",
     description:
-      "3TE déploie et entretient les réseaux de distribution et les infrastructures d'éclairage public, pour des territoires mieux connectés et plus sûrs.",
+      "Déploiement et entretien des réseaux de distribution et des infrastructures d'éclairage public.",
     points: [
-      "Extension et renforcement des réseaux",
-      "Éclairage public et urbain",
-      "Raccordements et branchements",
-      "Solutions solaires et basse consommation",
+      "Extension de réseaux",
+      "Éclairage public & urbain",
+      "Raccordements",
+      "Solutions solaires",
     ],
   },
 ]
 
 export function Services() {
   const [active, setActive] = useState(0)
-  const service = SERVICES[active]
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="services" className="relative bg-secondary overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 energy-grid opacity-20" aria-hidden="true" />
+    <section id="savoir-faire" ref={ref} className="relative bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-24 md:py-32">
+        <div className="grid gap-16 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+            >
+              Savoir-faire
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mt-4 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-5xl"
+            >
+              Trois
+              <br />
+              domaines
+            </motion.h2>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mt-6 h-px bg-primary"
+            />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20">
-        <motion.div
-          className="max-w-2xl"
-          variants={fadeUp}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          transition={smoothTransition}
-        >
-          <div className="inline-flex items-center gap-2 text-primary">
-            <Zap className="size-4" fill="currentColor" />
-            <span className="text-sm font-semibold uppercase tracking-widest">Nos savoir-faire</span>
-          </div>
-          <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-foreground md:text-5xl text-balance">
-            Ce que nous faisons
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Une expertise complète, de l&apos;étude à l&apos;exploitation, au service de vos infrastructures.
-          </p>
-        </motion.div>
-
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
-          <motion.div
-            variants={fadeLeft}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            transition={{ ...smoothTransition, delay: 0.2 }}
-          >
-            <div className="flex flex-wrap gap-2" role="tablist" aria-label="Domaines d'intervention">
-              {SERVICES.map((s, i) => {
-                const Icon = s.icon
-                const selected = i === active
-                return (
-                  <motion.button
-                    key={s.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={selected}
-                    onClick={() => setActive(i)}
-                    className={`relative inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-all ${
-                      selected
-                        ? "bg-primary text-primary-foreground glow-border"
-                        : "bg-white text-foreground border border-border/60 hover:border-primary/30 hover:bg-primary/5"
-                    }`}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    layout
-                  >
-                    {selected && (
-                      <motion.span
-                        className="absolute -top-1 -right-1 size-2 rounded-full bg-energy-glow"
-                        layoutId="service-indicator"
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    )}
-                    <Icon className="size-4" />
-                    {s.label}
-                  </motion.button>
-                )
-              })}
+            <div className="mt-12 space-y-0">
+              {SERVICES.map((service, i) => (
+                <motion.button
+                  key={service.id}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className={`group flex w-full items-center gap-4 border-t border-border py-5 text-left transition-colors first:border-t-0 ${
+                    i === active ? "text-primary" : "text-foreground hover:text-muted-foreground"
+                  }`}
+                >
+                  <span className="font-display text-xs font-medium text-muted-foreground/40">
+                    {service.number}
+                  </span>
+                  <span className={`font-heading text-lg font-bold ${i === active ? "text-primary" : ""}`}>
+                    {service.label}
+                  </span>
+                  {i === active && (
+                    <motion.div
+                      layoutId="active-indicator"
+                      className="ml-auto h-px flex-1 bg-primary/20"
+                    />
+                  )}
+                </motion.button>
+              ))}
             </div>
+          </div>
 
+          <div className="lg:col-span-7 lg:col-start-6">
             <AnimatePresence mode="wait">
               <motion.div
-                key={service.id}
-                className="mt-6"
-                initial={{ opacity: 0, y: 10 }}
+                key={SERVICES[active].id}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
               >
-                <h3 className="font-heading text-2xl font-bold text-foreground">{service.label}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{service.description}</p>
-                <motion.ul
-                  className="mt-6 grid gap-3 sm:grid-cols-2"
-                  variants={staggerContainer}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {service.points.map((point, i) => (
-                    <motion.li
-                      key={point}
-                      className="flex items-start gap-2.5 text-sm text-foreground"
-                      variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <motion.span
-                        className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 15, delay: i * 0.08 }}
-                      >
-                        <Check className="size-3.5" />
-                      </motion.span>
-                      {point}
-                    </motion.li>
-                  ))}
-                </motion.ul>
+                <div className="relative overflow-hidden">
+                  <motion.img
+                    src={SERVICES[active].image}
+                    alt={SERVICES[active].label}
+                    className="aspect-[16/10] w-full object-cover"
+                    initial={{ scale: 1.05 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <span className="font-display text-6xl font-bold text-white/20">
+                      {SERVICES[active].number}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <h3 className="font-heading text-xl font-bold">{SERVICES[active].label}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {SERVICES[active].description}
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    {SERVICES[active].points.map((point) => (
+                      <div key={point} className="flex items-center gap-3 text-sm text-foreground">
+                        <Check className="size-3.5 text-primary" />
+                        {point}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
-          </motion.div>
-
-          <motion.div
-            className="relative overflow-hidden rounded-lg border border-border/50 shadow-sm"
-            variants={fadeRight}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            transition={{ ...smoothTransition, delay: 0.3 }}
-          >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={service.image}
-                src={service.image || "/placeholder.svg"}
-                alt={service.imageAlt}
-                className="aspect-[4/3] w-full object-cover"
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-              />
-            </AnimatePresence>
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0" />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
