@@ -31,17 +31,15 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="a-propos" ref={ref} className="relative bg-brand-dark text-white overflow-hidden">
-      <div className="absolute inset-0 dot-grid opacity-30" />
-
-      <div className="relative mx-auto max-w-7xl px-4 py-24 md:py-32">
-        <div className="grid gap-20 lg:grid-cols-12">
+    <section id="a-propos" ref={ref} className="relative bg-background overflow-hidden">
+      <div className="relative mx-auto max-w-6xl px-4 pt-20 pb-28 md:pt-28 md:pb-36">
+        <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="text-xs font-medium uppercase tracking-[0.2em] text-white/40"
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
             >
               Qui sommes-nous
             </motion.span>
@@ -49,25 +47,15 @@ export function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-4 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-5xl"
+              className="mt-4 font-display text-3xl font-bold leading-[1.05] tracking-tight md:text-5xl"
             >
-              On ne fait
-              <br />
-              pas que du
-              <br />
-              <span className="text-primary">courant</span>
+              On ne fait pas que du <span className="italic text-primary">courant</span>
             </motion.h2>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 48 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-8 h-px bg-primary/60"
-            />
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-8 max-w-md text-base leading-relaxed text-white/50"
+              className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base"
             >
               3TE conçoit, réalise et maintient des infrastructures
               énergétiques. Réseaux de distribution, éclairage public,
@@ -79,11 +67,11 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mt-10"
+              className="mt-8"
             >
               <a
-                href="#services"
-                className="group inline-flex items-center gap-3 border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10"
+                href="#savoir-faire"
+                className="group inline-flex items-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
               >
                 Nos domaines
                 <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
@@ -97,28 +85,27 @@ export function About() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative overflow-hidden"
+                className="relative overflow-hidden rounded-3xl"
               >
                 <img
                   src="/images/team.png"
                   alt="Équipe 3TE"
-                  className="aspect-[4/3] w-full object-cover grayscale-[0.3]"
+                  className="aspect-[4/3] w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent" />
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.6 }}
-                className="absolute -bottom-12 left-6 right-6 grid grid-cols-4 gap-4 rounded-lg bg-white/5 p-6 backdrop-blur-md"
+                className="absolute -bottom-8 left-4 right-4 grid grid-cols-4 gap-4 rounded-2xl bg-white/95 p-5 shadow-xl backdrop-blur-md md:-bottom-10 md:left-6 md:right-6 md:p-6"
               >
                 {STATS.map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div className="font-display text-2xl font-bold md:text-3xl">
+                    <div className="font-display text-xl font-bold text-foreground md:text-3xl">
                       <Counter value={stat.value} suffix={stat.suffix} />
                     </div>
-                    <div className="mt-1 text-[11px] font-medium uppercase tracking-wider text-white/40">
+                    <div className="mt-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground md:text-[11px]">
                       {stat.label}
                     </div>
                   </div>

@@ -16,10 +16,11 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="contact" ref={ref} className="relative bg-brand-dark text-white overflow-hidden">
-      <div className="absolute inset-0 dot-grid opacity-20" />
+    <section id="contact" ref={ref} className="relative bg-background px-3 py-3 md:px-4 md:py-4">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-brand-dark text-white md:rounded-[2.5rem]">
+        <div className="absolute inset-0 dot-grid opacity-20" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-24 md:py-32">
+        <div className="relative px-5 py-16 md:px-14 md:py-24">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <motion.span
@@ -34,18 +35,10 @@ export function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-4 font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-5xl"
+              className="mt-4 font-display text-3xl font-bold leading-[1.05] tracking-tight md:text-5xl"
             >
-              On en
-              <br />
-              <span className="text-primary">parle</span>
+              On en <span className="italic text-primary">parle</span>
             </motion.h2>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 48 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-6 h-px bg-primary/60"
-            />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -121,12 +114,12 @@ export function Contact() {
                       required
                       rows={4}
                       placeholder="Décrivez votre projet..."
-                      className="w-full resize-none border-b border-white/15 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-white/20 focus:border-primary"
+                      className="w-full resize-none rounded-2xl border border-white/15 bg-white/5 p-4 text-sm text-white outline-none transition-colors placeholder:text-white/20 focus:border-primary"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="mt-2 inline-flex items-center gap-3 border border-white/20 bg-white/5 px-8 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10"
+                    className="mt-2 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
                   >
                     Envoyer
                     <span>&rarr;</span>
@@ -135,6 +128,7 @@ export function Contact() {
               )}
             </AnimatePresence>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -164,7 +158,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full border-b border-white/15 bg-transparent pb-3 text-sm text-white outline-none transition-colors placeholder:text-white/20 focus:border-primary"
+        className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/20 focus:border-primary"
       />
     </div>
   )

@@ -24,7 +24,7 @@ export function SiteFooter() {
             <a
               href="https://www.linkedin.com"
               aria-label="LinkedIn 3TE"
-              className="mt-6 inline-flex size-9 items-center justify-center border border-white/10 text-white/40 transition-all hover:border-white/30 hover:text-white"
+              className="mt-6 inline-flex size-10 items-center justify-center rounded-full border border-white/10 text-white/40 transition-all hover:border-primary/50 hover:text-primary"
             >
               <LinkedInIcon className="size-4" />
             </a>

@@ -6,7 +6,6 @@ import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
 import { About } from "@/components/about"
 import { Services } from "@/components/services"
-import { Engagements } from "@/components/engagements"
 import { Contact } from "@/components/contact"
 import { SiteFooter } from "@/components/site-footer"
 
@@ -24,7 +23,6 @@ export default function Home() {
         <Features />
         <About />
         <Services />
-        <Engagements />
         <Contact />
       </main>
       <SiteFooter />
