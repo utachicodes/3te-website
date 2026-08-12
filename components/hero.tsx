@@ -25,7 +25,7 @@ export function Hero() {
     <section ref={ref} className="relative overflow-hidden bg-brand-dark">
       <div className="blueprint-grid absolute inset-0 opacity-60" />
       <img
-        src="/images/hero-switchgear.png"
+        src="/images/project-2.png"
         alt=""
         className="absolute inset-0 size-full object-cover opacity-25 mix-blend-luminosity"
       />
