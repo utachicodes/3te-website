@@ -32,6 +32,10 @@ export const metadata: Metadata = {
   description:
     "3TE conçoit, réalise et maintient des infrastructures énergétiques, des réseaux électriques et des installations industrielles. De l'étude à l'exploitation, un partenaire de confiance pour vos projets.",
   generator: 'v0.app',
+  icons: {
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
 }
 
 export const viewport: Viewport = {
