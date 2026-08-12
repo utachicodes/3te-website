@@ -10,7 +10,7 @@ const SERVICES = [
     number: "01",
     label: "Industrie",
     icon: Factory,
-    image: "/images/service-industrie.png",
+    image: "/images/project-1.png",
     description:
       "Électricité industrielle haute et basse tension, automatisme, supervision et maintenance de sites.",
     points: [
@@ -25,7 +25,7 @@ const SERVICES = [
     number: "02",
     label: "Tertiaire",
     icon: Building2,
-    image: "/images/service-tertiaire.png",
+    image: "/images/project-4.png",
     description:
       "Équipement de bâtiments tertiaires avec une attention particulière au confort et à la sécurité.",
     points: [
@@ -40,7 +40,7 @@ const SERVICES = [
     number: "03",
     label: "Réseau & éclairage",
     icon: Lightbulb,
-    image: "/images/service-reseau.png",
+    image: "/images/project-6.png",
     description:
       "Déploiement et entretien des réseaux de distribution et des infrastructures d'éclairage public.",
     points: [
