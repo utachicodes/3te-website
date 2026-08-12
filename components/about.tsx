@@ -160,7 +160,7 @@ export function About() {
                 className="relative overflow-hidden rounded-3xl"
               >
                 <img
-                  src="/images/team.png"
+                  src="/images/site-3.jpg"
                   alt="Équipe 3TE"
                   className="aspect-[4/3] w-full object-cover"
                 />
@@ -206,7 +206,7 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="order-2 hidden overflow-hidden rounded-2xl md:order-1 md:block"
           >
-            <img src="/images/service-industrie.png" alt="" className="aspect-square w-full object-cover" />
+            <img src="/images/project-5.png" alt="" className="aspect-square w-full object-cover" />
           </motion.div>
 
           <motion.div
@@ -252,7 +252,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-3 hidden overflow-hidden rounded-2xl md:block"
           >
-            <img src="/images/service-reseau.png" alt="" className="aspect-square w-full object-cover" />
+            <img src="/images/project-9.png" alt="" className="aspect-square w-full object-cover" />
           </motion.div>
         </div>
       </div>
@@ -325,7 +325,7 @@ export function About() {
           className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl md:rounded-[2.5rem]"
         >
           <img
-            src="/images/hero-switchgear.png"
+            src="/images/project-3.png"
             alt="Technicien 3TE en intervention"
             className="aspect-[4/5] w-full object-cover sm:aspect-[16/9]"
           />
@@ -373,7 +373,7 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="order-2 overflow-hidden rounded-2xl md:order-1"
           >
-            <img src="/images/service-tertiaire.png" alt="" className="aspect-[4/5] w-full object-cover" />
+            <img src="/images/site-1.jpg" alt="" className="aspect-[4/5] w-full object-cover" />
           </motion.div>
 
           <motion.div
@@ -406,7 +406,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-3 overflow-hidden rounded-2xl"
           >
-            <img src="/images/team.png" alt="" className="aspect-[4/5] w-full object-cover" />
+            <img src="/images/site-2.jpg" alt="" className="aspect-[4/5] w-full object-cover" />
           </motion.div>
         </div>
       </div>
