@@ -38,9 +38,9 @@ const ITEMS = [
 ]
 
 const IMAGES = [
-  { src: "/images/team.png", alt: "Équipe 3TE sur le terrain" },
-  { src: "/images/service-reseau.png", alt: "Réseau de distribution électrique" },
-  { src: "/images/service-industrie.png", alt: "Installation industrielle" },
+  { src: "/images/site-4.jpg", alt: "Équipe 3TE sur le terrain" },
+  { src: "/images/site-5.jpg", alt: "Réseau de distribution électrique" },
+  { src: "/images/site-6.jpg", alt: "Installation industrielle" },
 ]
 
 const PARTNERS = ["ENERGIA", "VOLTAX", "GRID+", "SOLARIS", "NOVATEC", "URBALUX"]
