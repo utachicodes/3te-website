@@ -25,11 +25,12 @@ export function Hero() {
     <section ref={ref} className="relative overflow-hidden bg-brand-dark">
       <div className="blueprint-grid absolute inset-0 opacity-60" />
       <img
-        src="/images/project-2.png"
-        alt=""
-        className="absolute inset-0 size-full object-cover opacity-25 mix-blend-luminosity"
+        src="/images/hero.jpg"
+        alt="Équipe 3TE en intervention sur un chantier de construction électrique"
+        className="absolute inset-0 size-full object-cover opacity-50"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/50 via-brand-dark/70 to-brand-dark" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/85 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-transparent to-brand-dark/60" />
 
       <div className="relative mx-auto w-full max-w-6xl px-4 pb-10 pt-16 md:pt-20">
         <motion.div
