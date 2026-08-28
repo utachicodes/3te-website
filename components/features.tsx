@@ -152,7 +152,9 @@ export function Features() {
                   >
                     <Icon className="size-4" />
                   </span>
-                  <span className={`font-heading text-base font-bold md:text-lg ${isActive ? "text-primary-foreground" : "text-foreground"}`}>
+                  <span
+                    className={`font-heading text-base font-bold md:text-lg ${isActive ? "text-white" : "text-foreground"}`}
+                  >
                     {item.title}
                   </span>
                   {!isActive && (
@@ -178,12 +180,12 @@ export function Features() {
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
                       <div className="grid gap-4 px-5 pb-5 sm:grid-cols-3 md:px-6 md:pb-6">
-                        <p className="text-sm leading-relaxed text-primary-foreground/80 sm:col-span-1">
+                        <p className="text-sm leading-relaxed text-white/85 sm:col-span-1">
                           {item.summary}
                         </p>
                         <ul className="space-y-1.5 sm:col-span-2">
                           {item.points.map((point) => (
-                            <li key={point} className="text-sm text-primary-foreground/90">
+                            <li key={point} className="text-sm text-white/90">
                               · {point}
                             </li>
                           ))}
