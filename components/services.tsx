@@ -10,7 +10,7 @@ const SERVICES = [
     number: "01",
     label: "Industrie",
     icon: Factory,
-    image: "/images/project-1.png",
+    image: "/images/site-7.jpg",
     description:
       "Électricité industrielle haute et basse tension, automatisme, supervision et maintenance de sites.",
     points: [
