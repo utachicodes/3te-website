@@ -25,7 +25,7 @@ const SERVICES = [
     number: "02",
     label: "Tertiaire",
     icon: Building2,
-    image: "/images/project-4.png",
+    image: "/images/project-3.png",
     description:
       "Équipement de bâtiments tertiaires avec une attention particulière au confort et à la sécurité.",
     points: [
@@ -40,7 +40,7 @@ const SERVICES = [
     number: "03",
     label: "Réseau & éclairage",
     icon: Lightbulb,
-    image: "/images/project-6.png",
+    image: "/images/project-4.png",
     description:
       "Déploiement et entretien des réseaux de distribution et des infrastructures d'éclairage public.",
     points: [

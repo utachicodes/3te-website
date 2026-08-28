@@ -160,7 +160,7 @@ export function About() {
                 className="relative overflow-hidden rounded-3xl"
               >
                 <img
-                  src="/images/site-3.jpg"
+                  src="/images/project-2.png"
                   alt="Équipe 3TE"
                   className="aspect-[4/3] w-full object-cover"
                 />
@@ -206,7 +206,7 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="order-2 hidden overflow-hidden rounded-2xl md:order-1 md:block"
           >
-            <img src="/images/project-5.png" alt="" className="aspect-square w-full object-cover" />
+            <img src="/images/project-5.png" alt="Domaines d'expertise 3TE" className="aspect-square w-full object-cover" />
           </motion.div>
 
           <motion.div
@@ -252,7 +252,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-3 hidden overflow-hidden rounded-2xl md:block"
           >
-            <img src="/images/project-9.png" alt="" className="aspect-square w-full object-cover" />
+            <img src="/images/project-1.png" alt="Équipe terrain 3TE" className="aspect-square w-full object-cover" />
           </motion.div>
         </div>
       </div>
@@ -373,7 +373,7 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="order-2 overflow-hidden rounded-2xl md:order-1"
           >
-            <img src="/images/site-1.jpg" alt="" className="aspect-[4/5] w-full object-cover" />
+            <img src="/images/project-3.png" alt="Bâtiment tertiaire équipé par 3TE" className="aspect-[4/5] w-full object-cover" />
           </motion.div>
 
           <motion.div
@@ -406,7 +406,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-3 overflow-hidden rounded-2xl"
           >
-            <img src="/images/site-2.jpg" alt="" className="aspect-[4/5] w-full object-cover" />
+            <img src="/images/project-6.png" alt="Bureau d'études 3TE — solutions techniques" className="aspect-[4/5] w-full object-cover" />
           </motion.div>
         </div>
       </div>
